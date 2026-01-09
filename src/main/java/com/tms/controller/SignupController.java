@@ -1,6 +1,8 @@
 package com.tms.controller;
 
 import com.tms.database.UserDAO;
+import com.tms.service.EmailService;
+import com.tms.util.OTPUtils;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -68,26 +70,62 @@ public class SignupController {
             return;
         }
         
-        if (userDAO.emailExists(email)) {
-            showMessage("Email already registered", "error");
+        // Check if email already exists and is verified
+        if (userDAO.emailExists(email) && userDAO.isEmailVerified(email)) {
+            showMessage("Email already registered and verified", "error");
             return;
         }
         
-        // Register user
-        if (userDAO.registerUser(fullName, email, phone, password)) {
-            showMessage("Registration successful! Redirecting to login...", "success");
+        // Generate OTP
+        String otp = OTPUtils.generateOTP();
+        
+        // Create pending user with OTP
+        if (userDAO.createPendingUser(fullName, email, phone, password, otp)) {
+            // Send OTP email
+            showMessage("Sending verification email...", "success");
             
-            // Redirect to login after 2 seconds
+            // Send email in a separate thread to avoid blocking UI
             new Thread(() -> {
-                try {
-                    Thread.sleep(2000);
-                    javafx.application.Platform.runLater(() -> handleLoginLink());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                boolean emailSent = EmailService.sendOTPEmail(email, fullName, otp);
+                
+                javafx.application.Platform.runLater(() -> {
+                    if (emailSent) {
+                        showMessage("OTP sent to your email! Redirecting to verification...", "success");
+                        
+                        // Redirect to OTP verification page after 2 seconds
+                        new Thread(() -> {
+                            try {
+                                Thread.sleep(2000);
+                                javafx.application.Platform.runLater(() -> handleOTPVerification(email));
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }).start();
+                    } else {
+                        showMessage("Error sending OTP email. Please check email configuration.", "error");
+                    }
+                });
             }).start();
         } else {
             showMessage("Registration failed. Please try again.", "error");
+        }
+    }
+    
+    private void handleOTPVerification(String email) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/otp_verification.fxml"));
+            Parent root = loader.load();
+            
+            // Pass email to OTP verification controller
+            OTPVerificationController controller = loader.getController();
+            controller.setEmail(email);
+            
+            Stage stage = (Stage) emailField.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Travel Management System - Verify Email");
+        } catch (Exception e) {
+            e.printStackTrace();
+            showMessage("Error loading verification page", "error");
         }
     }
     

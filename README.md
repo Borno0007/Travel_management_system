@@ -5,6 +5,7 @@ A JavaFX desktop application for managing travel services in Bangladesh with MyS
 ## Features
 
 - **User Authentication**: Secure login and signup with password hashing (SHA-256)
+- **Email Verification**: OTP-based email verification for new registrations
 - **MySQL Database**: Persistent storage for user accounts
 - **Minimal Homepage**: Simple dashboard showing popular destinations and services in Bangladesh
 - **JavaFX UI**: Modern, responsive user interface
@@ -65,6 +66,22 @@ Before running the application, ensure you have:
    private static final String PASSWORD = ""; // Your MySQL password
    ```
 
+4. **Configure Email Settings (for OTP verification)**
+   - Open `src/main/java/com/tms/config/EmailConfig.java`
+   - Update email configuration with your Gmail credentials:
+   ```java
+   private static final String EMAIL_USERNAME = "your.email@gmail.com";
+   private static final String EMAIL_PASSWORD = "your-app-password";
+   private static final String FROM_EMAIL = "your.email@gmail.com";
+   ```
+   
+   **Important:** For Gmail, you need to:
+   - Enable 2-factor authentication on your Google account
+   - Generate an App Password at: https://myaccount.google.com/apppasswords
+   - Use the App Password (not your regular Gmail password) in `EMAIL_PASSWORD`
+   
+   **Note:** If email is not configured, registration will show an error when sending OTP.
+
 ## Installation & Running
 
 1. **Navigate to the project directory**
@@ -121,7 +138,9 @@ Travel_management_system/
    - Phone Number (minimum 10 digits)
    - Password (minimum 6 characters)
 4. Click "Sign Up" button
-5. You'll be redirected to login page after successful registration
+5. Check your email for the 6-digit OTP (One-Time Password)
+6. Enter the OTP on the verification page (valid for 5 minutes)
+7. You'll be redirected to login page after successful verification
 
 ### Login
 1. Enter your registered email and password
@@ -151,13 +170,24 @@ The system features information about:
    - Check database credentials in `Database.java`
    - Verify database `travel_management_db` exists
 
-2. **JavaFX Runtime Error**
+2. **Email Sending Error / OTP Not Received**
+   - Check email configuration in `EmailConfig.java`
+   - Ensure you're using Gmail App Password (not regular password)
+   - Enable 2-factor authentication on your Google account
+   - Check spam/junk folder for the OTP email
+   - Verify internet connection is working
+
+3. **JavaFX Runtime Error**
    - Make sure you're using Java 17 or higher
    - Maven should automatically download JavaFX dependencies
 
-3. **Build Failures**
+4. **Build Failures**
    - Run `mvn clean` then `mvn install`
    - Check internet connection for Maven dependencies
+
+5. **OTP Expired**
+   - OTP is valid for 5 minutes only
+   - Request a new registration if OTP expires
 
 ## Security Note
 
