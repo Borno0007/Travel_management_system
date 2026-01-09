@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.tms.controller.HomeController"
+            style="-fx-background-color: #ecf0f1;">
+    
+    <!-- Top Header -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #2c3e50; -fx-padding: 15;">
+            <Label text="Travel Management System - Bangladesh" 
+                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Logout" onAction="#handleLogout" 
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 13px; 
+                           -fx-pref-width: 100; -fx-pref-height: 30; -fx-cursor: hand; -fx-background-radius: 5;"/>
+        </HBox>
+    </top>
+    
+    <!-- Center Content -->
+    <center>
+        <VBox alignment="CENTER" spacing="30" style="-fx-padding: 40;">
+            
+            <!-- Welcome Message -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 40;">
+                <Label fx:id="welcomeLabel" text="Welcome!" 
+                       style="-fx-font-size: 32px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label text="Explore the beauty of Bangladesh" 
+                       style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+            </VBox>
+            
+            <!-- Information Cards -->
+            <GridPane hgap="20" vgap="20" alignment="CENTER">
+                
+                <!-- Popular Destinations Card -->
+                <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-pref-width: 250;" 
+                      GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="🏖️ Popular Destinations" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                    <Separator/>
+                    <Label text="• Cox's Bazar" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Sundarbans" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Sylhet Tea Gardens" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Bandarban Hills" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                </VBox>
+                
+                <!-- Travel Services Card -->
+                <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-pref-width: 250;" 
+                      GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="🎫 Our Services" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                    <Separator/>
+                    <Label text="• Tour Packages" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Hotel Booking" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Transportation" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Tour Guides" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                </VBox>
+                
+                <!-- Quick Info Card -->
+                <VBox spacing="10" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 25; -fx-pref-width: 250;" 
+                      GridPane.columnIndex="2" GridPane.rowIndex="0">
+                    <Label text="ℹ️ Quick Info" 
+                           style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                    <Separator/>
+                    <Label text="• Best Time: Oct - Mar" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Currency: BDT (৳)" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Language: Bengali" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                    <Label text="• Support: 24/7" style="-fx-font-size: 14px; -fx-text-fill: #555;"/>
+                </VBox>
+                
+            </GridPane>
+            
+            <Label fx:id="infoLabel" text="More features coming soon..." 
+                   style="-fx-font-size: 14px; -fx-text-fill: #95a5a6; -fx-font-style: italic;"/>
+            
+        </VBox>
+    </center>
+    
+    <!-- Bottom Footer -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-background-color: #34495e; -fx-padding: 10;">
+            <Label text="© 2025 Travel Management System Bangladesh - All Rights Reserved" 
+                   style="-fx-font-size: 12px; -fx-text-fill: #bdc3c7;"/>
+        </HBox>
+    </bottom>
+    
+</BorderPane>
