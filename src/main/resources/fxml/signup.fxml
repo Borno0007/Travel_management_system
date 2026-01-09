@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.tms.controller.SignupController"
+      style="-fx-background-color: #ecf0f1;">
+    
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+    
+    <!-- Header -->
+    <VBox alignment="CENTER" spacing="5">
+        <Label text="Travel Management System" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label text="Bangladesh" style="-fx-font-size: 16px; -fx-text-fill: #16a085;"/>
+    </VBox>
+    
+    <!-- Signup Form -->
+    <VBox alignment="CENTER" spacing="12" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 30;">
+        <Label text="Create Account" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+        
+        <VBox spacing="6">
+            <Label text="Full Name:" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="fullNameField" promptText="Enter your full name" 
+                      style="-fx-pref-width: 300; -fx-pref-height: 35; -fx-font-size: 13px;"/>
+        </VBox>
+        
+        <VBox spacing="6">
+            <Label text="Email:" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="emailField" promptText="Enter your email" 
+                      style="-fx-pref-width: 300; -fx-pref-height: 35; -fx-font-size: 13px;"/>
+        </VBox>
+        
+        <VBox spacing="6">
+            <Label text="Phone:" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="phoneField" promptText="Enter your phone number" 
+                      style="-fx-pref-width: 300; -fx-pref-height: 35; -fx-font-size: 13px;"/>
+        </VBox>
+        
+        <VBox spacing="6">
+            <Label text="Password:" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <PasswordField fx:id="passwordField" promptText="Enter your password" 
+                          style="-fx-pref-width: 300; -fx-pref-height: 35; -fx-font-size: 13px;"/>
+        </VBox>
+        
+        <VBox spacing="6">
+            <Label text="Confirm Password:" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <PasswordField fx:id="confirmPasswordField" promptText="Confirm your password" 
+                          style="-fx-pref-width: 300; -fx-pref-height: 35; -fx-font-size: 13px;"/>
+        </VBox>
+        
+        <Label fx:id="messageLabel" style="-fx-font-size: 13px;" wrapText="true"/>
+        
+        <Button text="Sign Up" onAction="#handleSignup" 
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-size: 15px; 
+                       -fx-pref-width: 300; -fx-pref-height: 40; -fx-cursor: hand; -fx-background-radius: 5;"/>
+        
+        <HBox spacing="5" alignment="CENTER">
+            <Label text="Already have an account?" style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+            <Hyperlink text="Login" onAction="#handleLoginLink" 
+                      style="-fx-font-size: 13px; -fx-text-fill: #3498db;"/>
+        </HBox>
+    </VBox>
+    
+    <VBox.margin>
+        <Insets top="10"/>
+    </VBox.margin>
+</VBox>

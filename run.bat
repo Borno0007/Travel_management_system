@@ -1,0 +1,3 @@
+@echo off
+echo Starting Travel Management System...
+mvn javafx:run
