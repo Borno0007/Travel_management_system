@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/21" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.tms.controller.OTPVerificationController"
+      style="-fx-background-color: #ecf0f1;">
+    
+    <padding>
+        <Insets top="50" right="40" bottom="50" left="40"/>
+    </padding>
+    
+    <!-- Header -->
+    <VBox alignment="CENTER" spacing="5">
+        <Label text="Travel Management System" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label text="Email Verification" style="-fx-font-size: 16px; -fx-text-fill: #16a085;"/>
+    </VBox>
+    
+    <!-- OTP Verification Form -->
+    <VBox alignment="CENTER" spacing="15" style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 40;">
+        <Label text="Verify Your Email" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+        
+        <Label fx:id="emailLabel" text="Enter the OTP sent to your email" 
+               style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-wrap-text: true; -fx-text-alignment: center;"/>
+        
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20 0 10 0;">
+            <Label text="One-Time Password (OTP):" style="-fx-font-size: 13px; -fx-text-fill: #34495e;"/>
+            <TextField fx:id="otpField" promptText="Enter 6-digit OTP" 
+                      style="-fx-pref-width: 300; -fx-pref-height: 40; -fx-font-size: 18px; -fx-alignment: center; -fx-font-weight: bold;"/>
+            <Label text="OTP is valid for 5 minutes" style="-fx-font-size: 11px; -fx-text-fill: #e74c3c;"/>
+        </VBox>
+        
+        <Label fx:id="messageLabel" style="-fx-font-size: 13px;" wrapText="true"/>
+        
+        <Button text="Verify OTP" onAction="#handleVerifyOTP" 
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 15px; 
+                       -fx-pref-width: 300; -fx-pref-height: 40; -fx-cursor: hand; -fx-background-radius: 5;"/>
+        
+        <HBox spacing="5" alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+            <Label text="Already verified?" style="-fx-font-size: 13px; -fx-text-fill: #7f8c8d;"/>
+            <Hyperlink text="Go to Login" onAction="#handleLoginLink" 
+                      style="-fx-font-size: 13px; -fx-text-fill: #3498db;"/>
+        </HBox>
+    </VBox>
+    
+    <VBox.margin>
+        <Insets top="10"/>
+    </VBox.margin>
+</VBox>
