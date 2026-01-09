@@ -6,11 +6,18 @@ public class EmailConfig {
     // Email configuration constants
     // For Gmail: Enable 2-factor authentication and create an App Password
     // Go to: https://myaccount.google.com/apppasswords
+    // 
+    // IMPORTANT: For production, use environment variables instead of hardcoded values:
+    // private static final String EMAIL_USERNAME = System.getenv("EMAIL_USERNAME");
+    // private static final String EMAIL_PASSWORD = System.getenv("EMAIL_PASSWORD");
+    // private static final String FROM_EMAIL = System.getenv("EMAIL_FROM");
+    //
+    // For development/testing only - replace with your actual credentials:
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
-    private static final String EMAIL_USERNAME = "your.email@gmail.com"; // Change this
-    private static final String EMAIL_PASSWORD = "your-app-password"; // Change this (use App Password, not regular password)
-    private static final String FROM_EMAIL = "your.email@gmail.com"; // Change this
+    private static final String EMAIL_USERNAME = "your.email@gmail.com"; // TODO: Change this
+    private static final String EMAIL_PASSWORD = "your-app-password"; // TODO: Change this (use App Password, not regular password)
+    private static final String FROM_EMAIL = "your.email@gmail.com"; // TODO: Change this
     private static final String FROM_NAME = "Travel Management System";
     
     public static Properties getMailProperties() {

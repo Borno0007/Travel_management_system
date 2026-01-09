@@ -5,12 +5,14 @@ import java.security.SecureRandom;
 public class OTPUtils {
     private static final SecureRandom random = new SecureRandom();
     private static final int OTP_LENGTH = 6;
+    private static final int MIN_OTP = 100000; // Minimum 6-digit OTP
+    private static final int MAX_OTP = 999999; // Maximum 6-digit OTP
     
     /**
      * Generate a random 6-digit OTP
      */
     public static String generateOTP() {
-        int otp = 100000 + random.nextInt(900000);
+        int otp = MIN_OTP + random.nextInt(MAX_OTP - MIN_OTP + 1);
         return String.valueOf(otp);
     }
     

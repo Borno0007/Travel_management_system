@@ -4,8 +4,12 @@ import com.tms.config.EmailConfig;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EmailService {
+    
+    private static final Logger LOGGER = Logger.getLogger(EmailService.class.getName());
     
     /**
      * Send OTP email to user
@@ -37,12 +41,11 @@ public class EmailService {
             
             // Send email
             Transport.send(message);
-            System.out.println("OTP email sent successfully to: " + toEmail);
+            LOGGER.log(Level.INFO, "OTP email sent successfully to: {0}", toEmail);
             return true;
             
         } catch (Exception e) {
-            System.err.println("Error sending OTP email: " + e.getMessage());
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Failed to send OTP email", e);
             return false;
         }
     }

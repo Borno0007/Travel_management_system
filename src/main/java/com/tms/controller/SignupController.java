@@ -102,7 +102,7 @@ public class SignupController {
                             }
                         }).start();
                     } else {
-                        showMessage("Error sending OTP email. Please check email configuration.", "error");
+                        showMessage("Unable to send verification email. Please try again later or contact support.", "error");
                     }
                 });
             }).start();

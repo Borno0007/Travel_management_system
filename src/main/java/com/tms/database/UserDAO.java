@@ -15,6 +15,12 @@ public class UserDAO {
      * Store user registration data with OTP (pending verification)
      */
     public boolean createPendingUser(String fullName, String email, String phone, String password, String otp) {
+        // First check if email is already verified
+        if (emailExists(email) && isEmailVerified(email)) {
+            System.err.println("Email already registered and verified");
+            return false;
+        }
+        
         String query = "INSERT INTO users (full_name, email, phone, password, otp, otp_expiry, is_verified) VALUES (?, ?, ?, ?, ?, ?, FALSE) " +
                       "ON DUPLICATE KEY UPDATE full_name=?, phone=?, password=?, otp=?, otp_expiry=?, is_verified=FALSE";
         
@@ -32,7 +38,7 @@ public class UserDAO {
             pstmt.setString(5, otp);
             pstmt.setTimestamp(6, otpExpiry);
             
-            // For UPDATE (in case email already exists)
+            // For UPDATE (in case email already exists but not verified)
             pstmt.setString(7, fullName);
             pstmt.setString(8, phone);
             pstmt.setString(9, hashedPassword);
@@ -44,7 +50,6 @@ public class UserDAO {
             
         } catch (SQLException e) {
             System.err.println("Error creating pending user: " + e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }
@@ -89,7 +94,6 @@ public class UserDAO {
             
         } catch (SQLException e) {
             System.err.println("Error verifying OTP: " + e.getMessage());
-            e.printStackTrace();
             return false;
         }
     }
